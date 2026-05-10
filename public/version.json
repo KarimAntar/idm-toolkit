@@ -1,0 +1,7 @@
+{
+  "version": "1.0",
+  "changelog": "Official v1.0 Release.\n - Freeze Trial support\n - Activation & Reset engine\n - Anti-Detection Bypass Wizard\n - Network Protection (hosts editor)\n - Registry Backup & Maintenance tools\n - System tray with minimize-to-tray",
+  "download_url": "https://idm.karims.dev/IDM_Toolkit_v1.0.exe",
+  "mandatory": false,
+  "release_date": "2026-05-10"
+}
