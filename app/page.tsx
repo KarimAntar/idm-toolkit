@@ -129,58 +129,82 @@ export default function Home() {
       </nav>
 
       {/* ── HERO ────────────────────────────────────────────── */}
-      <section className="relative pt-40 pb-28 px-6 text-center overflow-hidden scanlines" id="download">
+      <section className="relative pt-32 pb-20 px-6 overflow-hidden scanlines" id="download">
         {/* Glow blob */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-          <div style={{ width: 700, height: 400, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(0,240,255,0.055) 0%, transparent 70%)", filter: "blur(40px)" }} />
+        <div className="absolute inset-0 pointer-events-none">
+          <div style={{ position: "absolute", top: "30%", left: "25%", width: 600, height: 400, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(0,240,255,0.06) 0%, transparent 70%)", filter: "blur(60px)" }} />
         </div>
 
-        <div className="relative z-10 max-w-3xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-8 font-mono-label text-xs fade-up"
-               style={{ border: "1px solid rgba(0,240,255,0.25)", background: "rgba(0,240,255,0.06)", color: "#00f0ff" }}>
-            <span className="w-1.5 h-1.5 rounded-full pulse" style={{ background: "#00e676" }} />
-            v{VERSION} — Now Available
+        <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+          {/* ── Left: text content ── */}
+          <div className="flex-1 flex flex-col items-start">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-7 font-mono-label text-xs fade-up"
+                 style={{ border: "1px solid rgba(0,240,255,0.25)", background: "rgba(0,240,255,0.06)", color: "#00f0ff" }}>
+              <span className="w-1.5 h-1.5 rounded-full pulse" style={{ background: "#00e676" }} />
+              v{VERSION} — Now Available
+            </div>
+
+            {/* Logo + Name */}
+            <div className="flex items-center gap-4 mb-7 fade-up delay-100">
+              <div className="w-16 h-16 rounded-2xl overflow-hidden glow-cyan flex-shrink-0">
+                <Image src="/app_icon.png" alt="IDM Toolkit" width={64} height={64} className="w-full h-full object-cover" priority />
+              </div>
+              <div>
+                <div className="font-headline font-bold text-2xl" style={{ color: "#00f0ff", letterSpacing: "-0.02em" }}>IDM Toolkit</div>
+                <div className="font-mono-label text-xs mt-0.5" style={{ color: "rgba(232,245,245,0.35)" }}>v{VERSION} · Windows 10/11</div>
+              </div>
+            </div>
+
+            {/* Headline */}
+            <h1 className="font-headline font-bold mb-5 fade-up delay-200"
+                style={{ fontSize: "clamp(2rem,4.5vw,3.5rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}>
+              The Ultimate IDM<br />
+              <span style={{ color: "#00f0ff" }}>Utility Toolkit</span>
+            </h1>
+
+            {/* Subhead */}
+            <p className="text-base mb-8 fade-up delay-300"
+               style={{ color: "rgba(232,245,245,0.5)", maxWidth: 480, lineHeight: 1.75 }}>
+              Freeze trials, activate, reset, and protect your Internet Download Manager setup — all from one beautiful interface.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3 items-start mb-5 fade-up delay-400">
+              <button onClick={handleDownload} disabled={downloading}
+                      className="flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all disabled:opacity-60"
+                      style={{ background: "#00f0ff", color: "#0d1515", boxShadow: "0 0 32px rgba(0,240,255,0.3)" }}>
+                {downloading ? "Starting download…" : `⬇ Download v${VERSION}`}
+              </button>
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer"
+                 className="flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all hover:bg-white/5"
+                 style={{ border: "1px solid rgba(0,240,255,0.3)", color: "#00f0ff" }}>
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" /></svg>
+                View on GitHub
+              </a>
+            </div>
+
+            <p className="font-mono-label text-xs fade-up delay-400" style={{ color: "rgba(232,245,245,0.25)" }}>
+              Free · No account required · ~8 MB
+            </p>
           </div>
 
-          {/* App Icon */}
-          <div className="flex justify-center mb-8 fade-up delay-100">
-            <div className="w-24 h-24 rounded-2xl overflow-hidden glow-cyan">
-              <Image src="/app_icon.png" alt="IDM Toolkit" width={96} height={96} className="w-full h-full object-cover" priority />
+          {/* ── Right: screenshot ── */}
+          <div className="flex-1 w-full max-w-2xl fade-up delay-300">
+            <div className="relative rounded-xl overflow-hidden"
+                 style={{ boxShadow: "0 0 60px rgba(0,240,255,0.12), 0 40px 80px rgba(0,0,0,0.5)", border: "1px solid rgba(0,240,255,0.15)" }}>
+              <Image
+                src="/Screenshot.png"
+                alt="IDM Toolkit interface"
+                width={1300}
+                height={860}
+                className="w-full h-auto block"
+                priority
+              />
             </div>
           </div>
 
-          {/* Headline */}
-          <h1 className="font-headline font-bold mb-6 fade-up delay-200"
-              style={{ fontSize: "clamp(2.5rem,6vw,4.5rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}>
-            The Ultimate IDM<br />
-            <span style={{ color: "#00f0ff" }}>Utility Toolkit</span>
-          </h1>
-
-          {/* Subhead */}
-          <p className="text-lg mb-10 mx-auto fade-up delay-300"
-             style={{ color: "rgba(232,245,245,0.5)", maxWidth: 520, lineHeight: 1.7 }}>
-            Freeze trials, activate, reset, and protect your Internet Download Manager setup — all from one beautiful interface.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-5 fade-up delay-400">
-            <button onClick={handleDownload} disabled={downloading}
-                    className="flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all disabled:opacity-60"
-                    style={{ background: "#00f0ff", color: "#0d1515", boxShadow: "0 0 32px rgba(0,240,255,0.3)" }}>
-              {downloading ? "Starting download…" : `⬇ Download v${VERSION}`}
-            </button>
-            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer"
-               className="flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all hover:bg-white/5"
-               style={{ border: "1px solid rgba(0,240,255,0.3)", color: "#00f0ff" }}>
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" /></svg>
-              View on GitHub
-            </a>
-          </div>
-
-          <p className="font-mono-label text-xs" style={{ color: "rgba(232,245,245,0.25)" }}>
-            Windows 10/11 · Free · No account required · ~8 MB
-          </p>
         </div>
       </section>
 
@@ -232,7 +256,7 @@ export default function Home() {
                  style={{ background: "#0d1515", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center gap-3">
                 <Image src="/app_icon.png" alt="" width={20} height={20} className="rounded" />
-                <span className="font-headline font-semibold text-xs" style={{ color: "#00f0ff" }}>IDM UTILITY TOOLKIT</span>
+                <span className="font-headline font-semibold text-xs" style={{ color: "#00f0ff" }}>IDM TOOLKIT</span>
                 <span className="font-mono-label text-xs px-1.5 py-0.5 rounded"
                       style={{ background: "rgba(0,240,255,0.08)", border: "1px solid rgba(0,240,255,0.2)", color: "#00f0ff", fontSize: 10 }}>
                   Dashboard
@@ -296,7 +320,7 @@ export default function Home() {
             Ready to take control?
           </h2>
           <p className="mb-10 text-base" style={{ color: "rgba(232,245,245,0.45)", lineHeight: 1.7 }}>
-            Download IDM Utility Toolkit and manage your Internet Download Manager like a pro.
+            Download IDM Toolkit and manage your Internet Download Manager like a pro.
           </p>
           <button onClick={handleDownload} disabled={downloading}
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-headline font-semibold text-base transition-all disabled:opacity-60"
@@ -327,9 +351,6 @@ export default function Home() {
                  style={{ color: "rgba(232,245,245,0.3)" }}>{l}</a>
             ))}
           </div>
-          <p className="font-mono-label text-xs" style={{ color: "rgba(232,245,245,0.2)" }}>
-            Built with Next.js · Deployed on Vercel
-          </p>
         </div>
       </footer>
 
